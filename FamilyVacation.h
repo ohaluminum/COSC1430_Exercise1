@@ -26,7 +26,7 @@ public:
     FamilyVacation operator+(int moreDays);
     FamilyVacation operator+(FamilyVacation other);
     bool operator==(FamilyVacation other);
-    void operator=(const FamilyVacation& other); //must be a member function !!!
+    FamilyVacation operator=(const FamilyVacation& other); //must be a member function !!!
 
     //Note that overloaded << CANNOT be declared as a member of the class!!!!!!
     friend ostream& operator<<(ostream& o, FamilyVacation v);

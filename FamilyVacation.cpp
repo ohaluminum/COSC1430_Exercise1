@@ -59,7 +59,7 @@ FamilyVacation::FamilyVacation(int days, int people, string* names)
 
     if (numPeople == 0)
     {
-        this->names == nullptr;
+        this->names = nullptr;
     }
     else
     {
@@ -201,7 +201,7 @@ ostream &operator<<(ostream &outS, FamilyVacation v)
 
 
 // Implement the overloaded = operator
-void FamilyVacation::operator=(const FamilyVacation& other)
+FamilyVacation FamilyVacation::operator=(const FamilyVacation& other)
 {
     numDays = other.numDays;
     numPeople = other.numPeople;
@@ -223,4 +223,5 @@ void FamilyVacation::operator=(const FamilyVacation& other)
             }
         }  
     }
+    return *this;
 }
