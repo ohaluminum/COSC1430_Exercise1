@@ -56,8 +56,19 @@ FamilyVacation::FamilyVacation(int days, int people, string* names)
 {
     numDays = days;
     numPeople = people;
-    this->names = new string[numPeople];
-    this->names = names;
+
+    if (numPeople == 0)
+    {
+        this->names == nullptr;
+    }
+    else
+    {
+        this->names = new string[numPeople];
+        for (int i = 0; i < numPeople; i++)
+        {
+            this->names[i] = names[i];
+        }
+    }
 }
 
 
@@ -79,11 +90,19 @@ FamilyVacation::FamilyVacation(const FamilyVacation& copy)
     numDays = copy.numDays;
     numPeople = copy.numPeople;
 
-    names = new string[numPeople];
-    for (int i = 0; i < numPeople; i++)
+    if (numPeople == 0)
     {
-        names[i] = copy.names[i];
+        names = nullptr;
     }
+    else
+    {
+        names = new string[numPeople];
+        for (int i = 0; i < numPeople; i++)
+        {
+            names[i] = copy.names[i];
+        }
+    }
+    
 }
 
 
@@ -163,19 +182,26 @@ ostream &operator<<(ostream &outS, FamilyVacation v)
          << ", People: " << v.getNumPeople()
          << " and they are: ";
 
-    for (int i = 0; i < v.getNumPeople() - 1; i++)
+    if (v.getNumPeople() == 0)
     {
-        outS << v.names[i] << ", ";
+        outS << endl;
+        return outS;
     }
+    else
+    {
+        for (int i = 0; i < v.getNumPeople() - 1; i++)
+        {
+            outS << v.names[i] << ", ";
+        }
 
-    outS << v.names[v.getNumPeople() - 1] << endl;
-
-    return outS;
+        outS << v.names[v.getNumPeople() - 1] << endl;
+        return outS;
+    }
 }
 
 
 // Implement the overloaded = operator
-FamilyVacation FamilyVacation::operator=(const FamilyVacation& other)
+void FamilyVacation::operator=(const FamilyVacation& other)
 {
     numDays = other.numDays;
     numPeople = other.numPeople;
@@ -183,13 +209,18 @@ FamilyVacation FamilyVacation::operator=(const FamilyVacation& other)
     if (this != &other)
     {
         delete[] names;
-        names = new string[numPeople];
-
-        for (int i = 0; i < numPeople; i++)
+        if (numPeople == 0)
         {
-            names[i] = other.names[i];
+            names = nullptr;
         }
-    }
+        else 
+        {
+            names = new string[numPeople];
 
-    return *this;
+            for (int i = 0; i < numPeople; i++)
+            {
+                names[i] = other.names[i];
+            }
+        }  
+    }
 }
