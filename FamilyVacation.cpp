@@ -16,10 +16,10 @@ void FamilyVacation::setNames(string* who, int people)
 
     if (people == 0) return;
 
-    names = new string[people];
     numPeople = people;
+    names = new string[numPeople];
 
-    for (int i = 0; i < people; i++)
+    for (int i = 0; i < numPeople; i++)
     {
         names[i] = who[i];
     }
